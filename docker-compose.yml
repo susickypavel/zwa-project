@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  app:
+    image: php:7.4-cli
+    command: php -S localhost:3000 ./docker-test.php
+    ports:
+      - 3000:3000
+    working_dir: /app
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: root # EDIT
+      MYSQL_PASSWORD: secret # EDIT
+      MYSQL_DB: zwa-project
+  mysql:
+    image: mysql:5.7
+    environment: 
+        MYSQL_ROOT_PASSWORD: secret
+        MYSQL_DATABASE: todos
+    ports:
+      - 4000:3306
