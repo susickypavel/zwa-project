@@ -4,18 +4,19 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class DefaultController
+class DefaultController extends AbstractController
 {
     /**
      * @Route("/")
      */
     public function index(): Response
     {
-        $number = random_int(0, 100);
+        $my_variable = "Pavel Susicky made this project";
 
-        return new Response(
-            '<html><body>Lucky number: '.$number.'</body></html>'
-        );
+        return $this->render("base.html.twig", [
+            "my_variable" => $my_variable
+        ]);
     }
 }
