@@ -4,6 +4,9 @@ namespace App\Entity;
 
 use App\Repository\SaveFileRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Mapping\ClassMetadata;
 
 /**
  * @ORM\Entity(repositoryClass=SaveFileRepository::class)
@@ -54,5 +57,11 @@ class SaveFile
         $this->speed = $speed;
 
         return $this;
+    }
+
+    public static function loadValidatorMetadata(ClassMetadata $metadata): void {
+        $metadata->addPropertyConstraint('name', new NotBlank());
+
+        $metadata->addPropertyConstraint('speed', new NotBlank());
     }
 }

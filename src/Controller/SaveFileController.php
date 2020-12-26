@@ -28,9 +28,8 @@ class SaveFileController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($saveFile);
             $em->flush();
-
-            // TODO: fix me
-            return $this->redirectToRoute("/");
+            
+            return $this->redirectToRoute("root");
         }
 
         return $this->render('save_file/form.html.twig', [
