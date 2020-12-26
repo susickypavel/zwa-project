@@ -27,6 +27,7 @@ class SaveFileController extends AbstractController
             $originalFilename = pathinfo($gameInfoFile->getClientOriginalName(), PATHINFO_FILENAME);
             // TODO: slugger
 
+            // TODO: maybe change originalFilename to generic "GameInfoFile"
             $newFilename = $originalFilename.'.'.uniqid().'.xml';
 
             try {

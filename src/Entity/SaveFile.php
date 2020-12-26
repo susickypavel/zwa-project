@@ -13,6 +13,22 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
  */
 class SaveFile
 {
+    // TODO: fix timezone
+
+    /**
+     * @var \DateTime
+     * @Gedmo\Mapping\Annotation\Timestampable(on="create")
+     * @Doctrine\ORM\Mapping\Column(type="datetime")
+     */
+    protected $createdAt;
+
+    /**
+     * @var \DateTime
+     * @Gedmo\Mapping\Annotation\Timestampable(on="update")
+     * @Doctrine\ORM\Mapping\Column(type="datetime")
+     */
+    protected $updatedAt;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
