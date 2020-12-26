@@ -24,7 +24,7 @@ class SaveScraperController extends AbstractController
         $speed = $crawler->filter("speed")->text();
         $money = $crawler->filter("money")->text();
 
-        return $this->render('save_scraper/index.html.twig', [
+        return $this->render('save_scraper/form.html.twig', [
             'name' => $name,
             'stamina' => $stamina,
             'money' => $money,
