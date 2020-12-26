@@ -23,45 +23,26 @@ class SaveFile
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $speed;
+    private $gameInfoFile;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getGameInfoFile(): ?string
     {
-        return $this->name;
+        return $this->gameInfoFile;
     }
 
-    public function setName(string $name): self
+    public function setGameInfoFile(string $gameInfoFile): self
     {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getSpeed(): ?int
-    {
-        return $this->speed;
-    }
-
-    public function setSpeed(int $speed): self
-    {
-        $this->speed = $speed;
+        $this->gameInfoFile = $gameInfoFile;
 
         return $this;
     }
 
     public static function loadValidatorMetadata(ClassMetadata $metadata): void {
-        $metadata->addPropertyConstraint('name', new NotBlank());
 
-        $metadata->addPropertyConstraint('speed', new NotBlank());
     }
 }

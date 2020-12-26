@@ -23,8 +23,21 @@ class SaveFileController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $saveFile = $form->getData();
+            $gameInfoFile = $form->get("game_info_file")->getData();
+            $originalFilename = pathinfo($gameInfoFile->getClientOriginalName(), PATHINFO_FILENAME);
+            // TODO: slugger
 
+            $newFilename = $originalFilename.'.'.uniqid().'.xml';
+
+            try {
+                $gameInfoFile->move($this->getParameter("gamefiles_directory"), $newFilename);
+            } catch (FileException $e) {
+                // TODO: handle file exceptions
+            }
+
+            $saveFile->setGameInfoFile($newFilename);
+
+            $saveFile = $form->getData();
             $em = $this->getDoctrine()->getManager();
             $em->persist($saveFile);
             $em->flush();
