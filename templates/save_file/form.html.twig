@@ -1,4 +1,8 @@
-{{ form_start(form) }}
-    {{ form_row(form) }}
-    <button type="submit">Upload Save File</button>
-{{ form_end(form) }}
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    {{ form_start(form) }}
+        {{ form_row(form) }}
+        <button type="submit">Upload Save File</button>
+    {{ form_end(form) }}
+{% endblock %}
