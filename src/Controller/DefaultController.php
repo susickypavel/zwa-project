@@ -2,6 +2,7 @@
 // src/Controller/LuckyController.php
 namespace App\Controller;
 
+use App\Entity\SaveFile;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -13,10 +14,10 @@ class DefaultController extends AbstractController
      */
     public function index(): Response
     {
-        $my_variable = "Pavel Susicky made this project";
+        $saveFiles = $this->getDoctrine()->getRepository(SaveFile::class)->findAll();
 
         return $this->render("index.html.twig", [
-            "my_variable" => $my_variable
+            "saveFiles" => $saveFiles
         ]);
     }
 }

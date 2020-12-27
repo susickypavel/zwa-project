@@ -5,6 +5,13 @@
     <h1>Stardew Valley Save Scraper</h1>
     <a href="/save/upload">Upload new Save</a>
     <a href="/login">Login</a>
-</div>
 
+    {% for save in saveFiles %}
+        <div>
+            <h2>{{ save.worldData.name }}</h2>
+            <span>Uploaded: {{ save.createdAt }}</span>
+            <span>Money: {{ save.worldData.money }}</span>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}
