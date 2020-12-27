@@ -28,16 +28,12 @@ class SaveFileController extends AbstractController
             $gameInfoFile = $form->get("game_info_file")->getData();
             $newFilename = 'SaveGameInfo.'.uniqid().'.xml';
 
-            try {
-                $gameInfoFile->move($this->getParameter("gamefiles_directory"), $newFilename);
+            // TODO: handle exceptions
+            $gameInfoFile->move($this->getParameter("gamefiles_directory"), $newFilename);
 
-                $worldData = $this->getWorldData($newFilename);
+            $worldData = $this->getWorldData($newFilename);
 
-                $saveFile->setWorldData($worldData);
-            } catch (FileException $e) {
-                // TODO: handle file exceptions
-            }
-
+            $saveFile->setWorldData($worldData);
             $saveFile->setGameInfoFile($newFilename);
 
             $saveFile = $form->getData();
