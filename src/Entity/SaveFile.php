@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\SaveFileRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
@@ -41,6 +42,11 @@ class SaveFile
      */
     private $gameInfoFile;
 
+    /**
+     * @ORM\Column(type="json")
+     */
+    private $worldData = [];
+
     public function getId(): ?int
     {
         return $this->id;
@@ -54,6 +60,18 @@ class SaveFile
     public function setGameInfoFile(string $gameInfoFile): self
     {
         $this->gameInfoFile = $gameInfoFile;
+
+        return $this;
+    }
+
+    public function getWorldData(): ?array
+    {
+        return $this->worldData;
+    }
+
+    public function setWorldData(array $worldData): self
+    {
+        $this->worldData = $worldData;
 
         return $this;
     }
