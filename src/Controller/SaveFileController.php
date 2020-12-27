@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SaveFileController extends AbstractController
 {
     /**
-     * @Route("/save/upload", name="save_file")
+     * @Route("/upload", name="save_file")
      */
     public function new(Request $request): Response
     {

@@ -12,6 +12,30 @@
     {% endblock %}
 </head>
 <body class="h-full">
+    <nav class="flex items-center bg-blue-600 h-20 px-4">
+        <ul class="flex text-lg text-white font-bold w-full">
+            {% for link in navigation_links %}
+                <li class="inline-block">
+                    <a class="inline-block p-4" href="{{ link.href }}">{{ link.name }}</a>
+                </li>
+            {% endfor %}
+            {% if app.user %}
+                <li class="inline-block flex-grow text-right">
+                    <a class="bg-green-800 hover:bg-green-900 rounded inline-block py-4 px-8" href="/logout">Odhlásit se</a>
+                </li>
+                <li class="inline-block ml-2">
+                    <a class="bg-blue-800 hover:bg-blue-900 rounded inline-block py-4 px-8" href="/upload">Nahrát save</a>
+                </li>
+            {% else %}
+                <li class="inline-block flex-grow text-right">
+                    <a class="bg-green-800 hover:bg-green-900 rounded inline-block py-4 px-8" href="/login">Přihlásit se</a>
+                </li>
+                <li class="inline-block ml-2">
+                    <a class="bg-blue-800 hover:bg-blue-900 rounded inline-block py-4 px-8" href="/register">Zaregistrovat</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
     {% block content %}
     {% endblock %}
 </body>
