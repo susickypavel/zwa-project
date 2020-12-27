@@ -14,7 +14,9 @@ class DefaultController extends AbstractController
      */
     public function index(): Response
     {
-        $saveFiles = $this->getDoctrine()->getRepository(SaveFile::class)->findAll();
+        $saveFiles = $this->getDoctrine()
+            ->getRepository(SaveFile::class)
+            ->findAll();
 
         return $this->render("index.html.twig", [
             "saveFiles" => $saveFiles

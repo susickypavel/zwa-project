@@ -52,8 +52,8 @@ class SaveFile
         return $this->id;
     }
 
-    public function getCreatedAt(): ?string {
-        return $this->createdAt->format("d.m.Y");
+    public function getCreatedAt(): ?\DateTime {
+        return $this->createdAt;
     }
 
     public function getGameInfoFile(): ?string

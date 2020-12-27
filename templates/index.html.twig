@@ -9,7 +9,7 @@
     {% for save in saveFiles %}
         <div>
             <h2>{{ save.worldData.name }}</h2>
-            <span>Uploaded: {{ save.createdAt }}</span>
+            <span>Uploaded: {{ save.createdAt|date("d.m.y H:i:s") }}</span>
             <span>Money: {{ save.worldData.money }}</span>
         </div>
     {% endfor %}
