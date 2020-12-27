@@ -7,14 +7,21 @@
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
 
-    <h1>Register</h1>
+    <div class="flex h-full justify-center items-center">
+        {{ form_start(registrationForm, { "attr": { "class": "flex flex-col max-w-xs w-full bg-gray-300 p-8 shadow-lg" }}) }}
+            <h2 class="text-center text-2xl mb-4 font-bold">Zaregistrovat se</h2>
+            <label class="flex flex-col">
+                <span class="font-bold">Email</span>
+                {{ form_widget(registrationForm.email, { "attr": { "class": "border-2 border-gray-400 hover:border-blue-500 focus:border-blue-500 p-2" }}) }}
+                <span class="text-red-500 text-sm">{{ form_errors(registrationForm.email) }}</span>
+            </label>
+            <label class="flex flex-col">
+                <span class="font-bold">Heslo</span>
+                {{ form_widget(registrationForm.plainPassword, { "attr": { "class": "border-2 border-gray-400 hover:border-blue-500 focus:border-blue-500 p-2" }}) }}
+                <span class="text-red-500 text-sm">{{ form_errors(registrationForm.plainPassword) }}</span>
+            </label>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+            <button class="bg-blue-500 text-white font-bold text-lg py-4 mt-4" type="submit">Pokračovat</button>
+        {{ form_end(registrationForm) }}
+    </div>
 {% endblock %}
