@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\SaveFile;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,14 +15,24 @@ class DefaultController extends AbstractController
     /**
      * @Route("/", name="root")
      */
-    public function index(): Response
+    public function index(Request $request, EntityManagerInterface $em, PaginatorInterface $paginator): Response
     {
-        $saveFiles = $this->getDoctrine()
-            ->getRepository(SaveFile::class)
-            ->findAll();
+        $SAVE_PER_PAGE = 2;
+
+        $saveFilesRepository = $em->getRepository(SaveFile::class);
+
+        $allSavesQuery = $saveFilesRepository->createQueryBuilder('save')
+            ->orderBy("save.createdAt", "DESC")
+            ->getQuery();
+
+        $saveFiles = $paginator->paginate($allSavesQuery, $request->query->getInt('page', 1), $SAVE_PER_PAGE);
+
+        $saveFiles->setCustomParameters([
+            "align" => "center"
+        ]);
 
         return $this->render("index.html.twig", [
-            "saveFiles" => $saveFiles
+            "saveFiles" => $saveFiles,
         ]);
     }
 }

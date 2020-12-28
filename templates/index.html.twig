@@ -12,5 +12,9 @@
             <span>Money: {{ save.worldData.money }}</span>
         </article>
     {% endfor %}
+    {% if not saveFiles %}
+        <span>Zadne svety :(</span>
+    {% endif %}
+    {{ knp_pagination_render(saveFiles, "pagination/pagination.html.twig") }}
 </main>
 {% endblock %}
