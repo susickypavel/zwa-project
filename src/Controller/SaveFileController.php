@@ -33,6 +33,8 @@ class SaveFileController extends AbstractController
 
             $worldData = $this->getWorldData($newFilename);
 
+            /** @noinspection PhpParamsInspection */
+            $saveFile->setAuthor($this->getUser());
             $saveFile->setWorldData($worldData);
             $saveFile->setGameInfoFile($newFilename);
 

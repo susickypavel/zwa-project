@@ -47,6 +47,12 @@ class SaveFile
      */
     private $worldData = [];
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="saveFiles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $author;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -82,5 +88,17 @@ class SaveFile
 
     public static function loadValidatorMetadata(ClassMetadata $metadata): void {
 
+    }
+
+    public function getAuthor(): ?User
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(?User $author): self
+    {
+        $this->author = $author;
+
+        return $this;
     }
 }

@@ -27,10 +27,6 @@ class DefaultController extends AbstractController
 
         $saveFiles = $paginator->paginate($allSavesQuery, $request->query->getInt('page', 1), $SAVE_PER_PAGE);
 
-        $saveFiles->setCustomParameters([
-            "align" => "center"
-        ]);
-
         return $this->render("index.html.twig", [
             "saveFiles" => $saveFiles,
         ]);
