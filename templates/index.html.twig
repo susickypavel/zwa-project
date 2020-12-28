@@ -33,12 +33,22 @@
                 </span>
             </div>
 
-            <a class="h-full w-32 border-2 border-gray-300 hover:border-gray-500" href="/uploads/gamefiles/{{ save.gameInfoFile }}" download="{{ save.gameInfoFile }}">
+            <a class="h-full w-32 border-2 border-gray-300 hover:border-gray-500 mr-2" href="/uploads/gamefiles/{{ save.gameInfoFile }}" download="{{ save.gameInfoFile }}">
                 <svg class="w-full h-full box-border p-8 transform hover:scale-90 transition-transform duration-200 ease-in-out" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#a0aec0">
                     <title>Stáhnout Save Info</title>
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
             </a>
+            {% if is_granted("ROLE_ADMIN") %}
+                <form method="post" action="/upload/delete">
+                    <input id="saveId" name="saveId" type="hidden" value="{{ save.id }}" />
+                    <button class="h-full w-32 border-2 border-red-300 hover:border-red-500" type="submit">
+                        <svg class="w-full h-full box-border p-8 transform hover:scale-90 transition-transform duration-200 ease-in-out" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#f00">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </form>
+            {% endif %}
         </article>
     {% endfor %}
     {{ knp_pagination_render(saveFiles, "pagination/pagination.html.twig") }}

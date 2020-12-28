@@ -51,6 +51,29 @@ class SaveFileController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/upload/delete", name="delete_save")
+     */
+    public function deleteSave(Request $request): Response {
+        if (!$this->isGranted("ROLE_ADMIN")) {
+            return $this->redirectToRoute("root");
+        }
+
+        $saveId = $request->request->get("saveId");
+
+        $em = $this->getDoctrine()->getManager();
+        $save = $em->getRepository(SaveFile::class)->find($saveId);
+
+        if (!$save) {
+            return $this->redirectToRoute("root");
+        }
+
+        $em->remove($save);
+        $em->flush();
+
+        return $this->redirectToRoute("root");
+    }
+
     private function getWorldData(string $file) {
         $pathToSaveFile = $this->getParameter("gamefiles_directory").'/'.$file;
 
