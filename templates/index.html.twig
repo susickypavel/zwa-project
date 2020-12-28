@@ -3,15 +3,14 @@
 {% block title %}Stardew Valley{% endblock %}
 
 {% block content %}
-<div id="content-mount">
-    <h1>Stardew Valley Save Scraper</h1>
-
+<main class="bg-gray-200 max-w-5xl mx-auto p-4">
+    <h2 class="text-2xl font-bold">Nejnovější světy</h2>
     {% for save in saveFiles %}
-        <div>
-            <h2>{{ save.worldData.name }}</h2>
+        <article class="bg-white mt-4 p-4 shadow-sm">
+            <h3>{{ save.worldData.name }}</h3>
             <span>Uploaded: {{ save.createdAt|date("d.m.y H:i:s") }}</span>
             <span>Money: {{ save.worldData.money }}</span>
-        </div>
+        </article>
     {% endfor %}
-</div>
+</main>
 {% endblock %}
