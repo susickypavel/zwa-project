@@ -20,6 +20,9 @@
                 </li>
             {% endfor %}
             {% if app.user %}
+                <li>
+                    <span class="inline-block p-4">Přihlášen jako {{ app.user.email }}</span>
+                </li>
                 <li class="inline-block ml-2">
                     <a class="flex items-center bg-green-400 hover:bg-green-300 rounded p-4" href="/logout">
                         <svg class="w-6 h-6 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#000">
