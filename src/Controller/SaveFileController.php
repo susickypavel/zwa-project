@@ -55,7 +55,9 @@ class SaveFileController extends AbstractController
      * @Route("/upload/delete", name="delete_save")
      */
     public function deleteSave(Request $request): Response {
-        if (!$this->isGranted("ROLE_ADMIN")) {
+        $token = $request->request->get("token");
+
+        if (!$this->isGranted("ROLE_ADMIN") || !$this->isCsrfTokenValid("delete-save", $token)) {
             return $this->redirectToRoute("root");
         }
 

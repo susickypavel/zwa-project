@@ -41,6 +41,7 @@
             </a>
             {% if is_granted("ROLE_ADMIN") %}
                 <form method="post" action="/upload/delete">
+                    <input id="token" name="token" type="hidden" value="{{ csrf_token("delete-save") }}" />
                     <input id="saveId" name="saveId" type="hidden" value="{{ save.id }}" />
                     <button class="h-full w-32 border-2 border-red-300 hover:border-red-500" type="submit">
                         <svg class="w-full h-full box-border p-8 transform hover:scale-90 transition-transform duration-200 ease-in-out" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#f00">
