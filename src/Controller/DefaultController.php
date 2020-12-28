@@ -17,7 +17,7 @@ class DefaultController extends AbstractController
      */
     public function index(Request $request, EntityManagerInterface $em, PaginatorInterface $paginator): Response
     {
-        $SAVE_PER_PAGE = 2;
+        $SAVE_PER_PAGE = 5;
 
         $saveFilesRepository = $em->getRepository(SaveFile::class);
 
