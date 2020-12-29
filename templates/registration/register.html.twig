@@ -3,22 +3,26 @@
 {% block title %}Registrovat se - Stardew Valley{% endblock %}
 
 {% block content %}
-    {% for flashError in app.flashes('verify_email_error') %}
-        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
-    {% endfor %}
-
     <div class="flex h-full justify-center items-center custom-bg">
         {{ form_start(registrationForm, { "attr": { "class": "flex flex-col max-w-md w-full bg-gray-100 p-8 shadow-lg" }}) }}
+            {% if form_errors(registrationForm.email) or form_errors(registrationForm.plainPassword) %}
+                <div class="flex items-center bg-red-600 border-2 border-red-700 rounded p-4 text-white font-bold mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20" fill="#fff">
+                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="ml-2">{{ form_errors(registrationForm.email) }}</span>
+                    <span class="ml-2">{{ form_errors(registrationForm.plainPassword) }}</span>
+                </div>
+            {% endif %}
+
             <h2 class="text-center text-2xl mb-4 font-bold">Zaregistrovat se</h2>
             <label class="flex flex-col mb-2">
                 <span class="font-bold">Email</span>
                 {{ form_widget(registrationForm.email, { "attr": { "class": "outline-none border-2 border-gray-400 rounded hover:border-blue-500 focus:border-blue-500 p-2", "autofocus": "true" }}) }}
-                <span class="text-red-500 text-sm">{{ form_errors(registrationForm.email) }}</span>
             </label>
             <label class="flex flex-col">
                 <span class="font-bold">Heslo</span>
                 {{ form_widget(registrationForm.plainPassword, { "attr": { "class": "outline-none border-2 border-gray-400 rounded hover:border-blue-500 focus:border-blue-500 p-2" }}) }}
-                <span class="text-red-500 text-sm">{{ form_errors(registrationForm.plainPassword) }}</span>
             </label>
 
             <button class="bg-blue-500 hover:bg-blue-600 focus:bg-blue-600 text-white font-bold text-lg py-4 mt-4 rounded" type="submit">Pokračovat</button>
