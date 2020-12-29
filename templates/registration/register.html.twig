@@ -3,7 +3,7 @@
 {% block title %}Registrovat se - Stardew Valley{% endblock %}
 
 {% block content %}
-    <div class="flex h-full justify-center items-center custom-bg">
+    <div class="flex h-full justify-center items-center">
         {{ form_start(registrationForm, { "attr": { "class": "flex flex-col max-w-md w-full bg-gray-100 p-8 shadow-lg" }}) }}
             {% if form_errors(registrationForm.email) or form_errors(registrationForm.plainPassword) %}
                 <div class="flex items-center bg-red-600 border-2 border-red-700 rounded p-4 text-white font-bold mb-4">
