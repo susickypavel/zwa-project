@@ -7,21 +7,22 @@
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
 
-    <div class="flex h-full justify-center items-center">
-        {{ form_start(registrationForm, { "attr": { "class": "flex flex-col max-w-xs w-full bg-gray-300 p-8 shadow-lg" }}) }}
+    <div class="flex h-full justify-center items-center custom-bg">
+        {{ form_start(registrationForm, { "attr": { "class": "flex flex-col max-w-md w-full bg-gray-100 p-8 shadow-lg" }}) }}
             <h2 class="text-center text-2xl mb-4 font-bold">Zaregistrovat se</h2>
-            <label class="flex flex-col">
+            <label class="flex flex-col mb-2">
                 <span class="font-bold">Email</span>
-                {{ form_widget(registrationForm.email, { "attr": { "class": "border-2 border-gray-400 hover:border-blue-500 focus:border-blue-500 p-2" }}) }}
+                {{ form_widget(registrationForm.email, { "attr": { "class": "outline-none border-2 border-gray-400 rounded hover:border-blue-500 focus:border-blue-500 p-2", "autofocus": "true" }}) }}
                 <span class="text-red-500 text-sm">{{ form_errors(registrationForm.email) }}</span>
             </label>
             <label class="flex flex-col">
                 <span class="font-bold">Heslo</span>
-                {{ form_widget(registrationForm.plainPassword, { "attr": { "class": "border-2 border-gray-400 hover:border-blue-500 focus:border-blue-500 p-2" }}) }}
+                {{ form_widget(registrationForm.plainPassword, { "attr": { "class": "outline-none border-2 border-gray-400 rounded hover:border-blue-500 focus:border-blue-500 p-2" }}) }}
                 <span class="text-red-500 text-sm">{{ form_errors(registrationForm.plainPassword) }}</span>
             </label>
 
-            <button class="bg-blue-500 text-white font-bold text-lg py-4 mt-4" type="submit">Pokračovat</button>
+            <button class="bg-blue-500 hover:bg-blue-600 focus:bg-blue-600 text-white font-bold text-lg py-4 mt-4 rounded" type="submit">Pokračovat</button>
+            <p class="text-gray-600 text-center mt-4">Máte účet? <a class="text-blue-500 hover:underline" href="/login">Přihlašte se</a></p>
         {{ form_end(registrationForm) }}
     </div>
 {% endblock %}
