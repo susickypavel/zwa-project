@@ -5,6 +5,7 @@
 {% block content %}
     <div class="h-full flex items-center justify-center">
         {{ form_start(form, { "attr": { "class": "flex flex-col max-w-md w-full bg-gray-100 p-8 shadow-lg" } }) }}
+            {{ include("fragments/home-button.html.twig") }}
             <h2 class="text-center text-2xl mb-4 font-bold">Nahrát save</h2>
             <label id="label-save" class="border-2 border-blue-500 p-4 rounded">
                 <span class="block font-bold mb-4">Save Game Info</span>
