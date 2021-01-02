@@ -1,10 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Nahrát save - Stardew Valley{% endblock %}
-
+{# TODO: validation #}
 {% block content %}
-    {{ form_start(form) }}
-        {{ form_row(form) }}
-        <button type="submit">Upload Save File</button>
-    {{ form_end(form) }}
+    <div class="h-full flex items-center justify-center">
+        {{ form_start(form, { "attr": { "class": "flex flex-col max-w-md w-full bg-gray-100 p-8 shadow-lg" } }) }}
+            <h2 class="text-center text-2xl mb-4 font-bold">Nahrát save</h2>
+            <label class="border-2 border-blue-500 p-4 rounded">
+                <span class="block font-bold mb-4">Save Game Info</span>
+                {{ form_widget(form.game_info_file, { "attr": { "class": "w-full" } }) }}
+            </label>
+            <button class="bg-blue-500 hover:bg-blue-600 focus:bg-blue-600 text-white font-bold text-lg py-4 mt-4 rounded" type="submit">Nahrát</button>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
