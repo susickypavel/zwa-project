@@ -6,10 +6,10 @@ module.exports = {
     plugins: [
         tailwindcss,
         autoprefixer,
-        purgecss({
-            content: [
-                "./templates/**/*.twig"
-            ]
-        })
+        // purgecss({
+        //     content: [
+        //         "./templates/**/*.twig"
+        //     ]
+        // })
     ]
 }
