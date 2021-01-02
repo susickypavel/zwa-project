@@ -56,12 +56,14 @@ class SaveFileController extends AbstractController
      */
     public function deleteSave(Request $request): Response {
         $token = $request->request->get("token");
+        $saveId = $request->request->get("saveId");
 
-        if (!$this->isGranted("ROLE_ADMIN") || !$this->isCsrfTokenValid("delete-save", $token)) {
+        $csrfTokenId = "delete-save-".$saveId;
+
+        if (!$this->isGranted("ROLE_ADMIN") || !$this->isCsrfTokenValid($csrfTokenId, $token)) {
             return $this->redirectToRoute("root");
         }
 
-        $saveId = $request->request->get("saveId");
 
         $em = $this->getDoctrine()->getManager();
         $save = $em->getRepository(SaveFile::class)->find($saveId);
