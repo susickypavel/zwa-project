@@ -20,10 +20,10 @@ class RegistrationFormType extends AbstractType
             ->add('email', EmailType::class, [
                 "constraints" => [
                     new NotBlank([
-                        "message" => "Please enter an email"
+                        "message" => "Email je povinný údaj"
                     ]),
                     new Email([
-                        "message" => "Enter a valid email"
+                        "message" => "Neplatný email"
                     ])
                 ]
             ])
@@ -31,11 +31,11 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Zadejte heslo',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'Vaše heslo by mělo mít minimálně {{ limit }} znaků',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
