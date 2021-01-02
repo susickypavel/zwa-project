@@ -3,8 +3,8 @@
 {% block title %}Přihlásit se - Stardew Valley{% endblock %}
 
 {% block content %}
-<div class="flex h-full justify-center items-center custom-bg">
-    <form class="flex flex-col max-w-md w-full bg-gray-100 p-8 shadow-lg" method="post">
+<div class="flex h-full justify-center items-center">
+    <form name="registrationForm" class="flex flex-col max-w-md w-full bg-gray-100 p-8 shadow-lg" method="post">
         {% if error %}
             <div class="flex items-center bg-red-600 border-2 border-red-700 rounded p-4 text-white font-bold mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20" fill="#fff">
@@ -15,11 +15,11 @@
         {% endif %}
 
         <h2 class="text-center text-2xl mb-4 font-bold">Přihlásit se</h2>
-        <label class="flex flex-col mb-2">
+        <label id="label-email" class="flex flex-col mb-2">
             <span class="font-bold">Email</span>
             <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="outline-none border-2 border-gray-400 rounded hover:border-blue-500 focus:border-blue-500 p-2" required autofocus />
         </label>
-        <label class="flex flex-col">
+        <label id="label-password" class="flex flex-col">
             <span class="font-bold">Heslo</span>
             <input type="password" name="password" id="inputPassword" class="outline-none border-2 border-gray-400 rounded hover:border-blue-500 focus:border-blue-500 p-2" required />
         </label>
@@ -30,4 +30,67 @@
         <p class="text-gray-600 text-center mt-4">Nemáte účet? <a class="text-blue-500 hover:underline" href="/register">Zaregistrujte se</a></p>
     </form>
 </div>
+<script type="text/javascript">
+    function errorFactory(errorId, errorMessage) {
+        const errorElement = document.createElement("span");
+        errorElement.innerText = errorMessage;
+        errorElement.className = "text-red-500";
+        errorElement.id = errorId;
+
+        return errorElement;
+    }
+
+    function validate(e) {
+        const errors = {};
+
+        const emailErrorId = "email-error";
+        const passwordErrorId = "password-error";
+
+        const email = document.forms.registrationForm.email;
+        const password = document.forms.registrationForm.password;
+
+        const emailElement = document.getElementById("label-email");
+        const passwordElement = document.getElementById("label-password");
+
+        const emailErrorElement = document.getElementById(emailErrorId);
+        const passwordErrorElement = document.getElementById(passwordErrorId);
+
+        if (emailErrorElement) {
+            emailErrorElement.remove();
+        }
+
+        if (passwordErrorElement) {
+            passwordErrorElement.remove();
+        }
+
+        if (email.value.length === 0) {
+            errors.email = "Email je povinný";
+        } else {
+            if (!/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email.value)) {
+                errors.email = "Zadejte platný email.";
+            }
+        }
+
+        if (errors.email) {
+            emailElement.appendChild(errorFactory(emailErrorId, errors.email));
+        }
+
+        if (password.value.length === 0) {
+            errors.password = "Heslo je povinné";
+        }
+
+        if (errors.password) {
+            passwordElement.appendChild(errorFactory(passwordErrorId, errors.password));
+        }
+
+        if (errors.password || errors.email) {
+            e.preventDefault();
+            return false;
+        } else {
+            console.log("Submitted");
+        }
+    }
+
+    document.forms.registrationForm.onsubmit = validate;
+</script>
 {% endblock %}
