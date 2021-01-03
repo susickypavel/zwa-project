@@ -25,3 +25,8 @@ Vypracoval Pavel Sušický.
 ## Postup projektu
 
 - Inicializace pomocí symfony
+- Přidání Tailwindcss pomocí unpkg (změnit na build time procedure)
+- Přidání a optimalizace fontu Open Sans (woff2, woff) + font prefetching
+- Vytvoření autentizace (Guard Authenticator)
+- Vytvoření login a registration formulářů
+- Přidání základních meta tagů
