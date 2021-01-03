@@ -2,11 +2,15 @@
 <html lang="cs">
     <head>
         <meta charset="UTF-8" />
+        <link rel="preload" href="/fonts/OpenSans-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/OpenSans-Bold.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/OpenSans-Light.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {# TODO: edit this link #}
-        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+        <meta name="author" content="Pavel Susicky" />
+        <meta name="description" content="Sdílejte své herní světy ze Stardew Valley" />
         <link href="{{ asset('styles/fonts.css') }}" rel="stylesheet"/>
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
     </head>
     <body class="bg-gray-200">
         {% block body %}{% endblock %}
