@@ -4,4 +4,10 @@
 
 {% block body %}
     <a href="/login">Login</a>
+    {% for upload in worldUploads %}
+        <div>
+            <time>{{ upload.createdAt|date("F jS \\a\\t g:ia")  }}</time>
+            <p>Uploaded by: {{ upload.author.username }}</p>
+        </div>
+    {% endfor %}
 {% endblock %}
