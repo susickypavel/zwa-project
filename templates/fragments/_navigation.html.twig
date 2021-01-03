@@ -1,0 +1,19 @@
+<nav class="h-20 w-full bg-gray-800">
+    <ul class="text-white text-center flex items-center h-full font-bold">
+        <li class="w-48">
+            <a href="/">Domů</a>
+        </li>
+        {% if not app.user %}
+        <li class="w-48 ml-auto">
+            <a href="/login">Přihlásit se</a>
+        </li>
+        <li class="w-48">
+            <a href="/register">Registrovat se</a>
+        </li>
+        {% else %}
+        <li class="w-48 ml-auto">
+            <a class="w-full" href="/logout">Odhlásit se</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
