@@ -10,6 +10,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class WorldUpload
 {
+    public function __construct() {
+        $this->setCreatedAt(new \DateTime());
+    }
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -21,6 +25,11 @@ class WorldUpload
      * @ORM\Column(type="json")
      */
     private $worldData = [];
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
 
     public function getId(): ?int
     {
@@ -35,6 +44,18 @@ class WorldUpload
     public function setWorldData(array $worldData): self
     {
         $this->worldData = $worldData;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
