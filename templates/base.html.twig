@@ -4,8 +4,11 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {# TODO: edit this link #}
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
+        <link href="{{ asset('styles/fonts.css') }}" rel="stylesheet"/>
     </head>
-    <body>
+    <body class="bg-gray-200">
         {% block body %}{% endblock %}
     </body>
 </html>

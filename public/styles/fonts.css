@@ -22,6 +22,10 @@
     src: url("/fonts/OpenSans-Light.woff2") format("woff2"), url("/fonts/OpenSans-Light.woff") format("woff");
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     font-family: OpenSans, sans-serif;
 }
