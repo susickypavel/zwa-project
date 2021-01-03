@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stardew Valley - Nahrát Save{% endblock %}
+
+{% block body %}
+<div>
+        {% if error %}
+                <div>
+                        {{ error }}
+                </div>
+        {% endif %}
+
+    {{ form_start(form) }}
+
+        {{ form_row(form.saveGameInfo) }}
+        {{ form_errors(form.saveGameInfo) }}
+
+        {{ form_row(form.worldState) }}
+        {{ form_errors(form.worldState) }}
+
+        <button type="submit">Nahrat</button>
+    {{ form_end(form) }}
+</div>
+{# TODO: JavaScript validation #}
+{% endblock %}
