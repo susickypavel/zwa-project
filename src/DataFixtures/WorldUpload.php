@@ -10,13 +10,14 @@ class WorldUpload extends Fixture
 {
     public function load(ObjectManager $manager)
     {
-        $worldUpload = new \App\Entity\WorldUpload();
-        $worldUpload->setWorldData(array());
-        /** @noinspection PhpParamsInspection */
-        $worldUpload->setAuthor($this->getReference("user-EDUARD"));
+        foreach (UserFixtures::USER_NAMES as $username) {
+            $worldUpload = new \App\Entity\WorldUpload();
+            $worldUpload->setWorldData(array());
+            /** @noinspection PhpParamsInspection */
+            $worldUpload->setAuthor($this->getReference("user-".$username));
 
-
-        $manager->persist($worldUpload);
+            $manager->persist($worldUpload);
+        }
 
         $manager->flush();
     }

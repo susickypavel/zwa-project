@@ -9,7 +9,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserFixtures extends Fixture
 {
-    private const USER_NAMES = array("ZDENEK", "EDUARD", "JOHNDOE");
+    public const USER_NAMES = array("ZDENEK", "EDUARD", "JOHNDOE");
 
     private $passwordEncoder;
 
