@@ -41,12 +41,17 @@ class WorldUploadController extends AbstractController
             $worldUpload->setAuthor($this->getUser());
 
             try {
-                // TODO: Save paths to files to database
                 $hash = uniqid();
                 $originalFilename = pathinfo($worldState->getClientOriginalName(), PATHINFO_FILENAME);
 
-                $saveGameInfo->move($this->getParameter("saves"), "SaveGameInfo_".$hash);
-                $worldState->move($this->getParameter("saves"), $originalFilename."_".$hash);
+                $newSaveGameInfo = "SaveGameInfo_".$hash;
+                $newWorldState = $originalFilename."_".$hash;
+
+                $worldUpload->setSaveGameInfo($newSaveGameInfo);
+                $worldUpload->setWorldState($newWorldState);
+
+                $saveGameInfo->move($this->getParameter("saves"), $newSaveGameInfo);
+                $worldState->move($this->getParameter("saves"), $newWorldState);
             } catch (\Exception $error) {
                 return $this->render('world_upload/index.html.twig', [
                     "form" => $uploadForm->createView(),

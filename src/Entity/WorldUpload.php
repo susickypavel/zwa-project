@@ -36,6 +36,16 @@ class WorldUpload
      */
     private $author;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $saveGameInfo;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $worldState;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -73,6 +83,30 @@ class WorldUpload
     public function setAuthor(?User $author): self
     {
         $this->author = $author;
+
+        return $this;
+    }
+
+    public function getSaveGameInfo(): ?string
+    {
+        return $this->saveGameInfo;
+    }
+
+    public function setSaveGameInfo(?string $saveGameInfo): self
+    {
+        $this->saveGameInfo = $saveGameInfo;
+
+        return $this;
+    }
+
+    public function getWorldState(): ?string
+    {
+        return $this->worldState;
+    }
+
+    public function setWorldState(?string $worldState): self
+    {
+        $this->worldState = $worldState;
 
         return $this;
     }
