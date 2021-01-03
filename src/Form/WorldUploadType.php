@@ -33,7 +33,7 @@ class WorldUploadType extends AbstractType
                         "maxSize" => "5M"
                     ]),
                     new NotNull([
-                        "message" => "Prosím nahrajte soubor"
+                        "message" => "Prosím nahrajte soubor <jménohráče>_<id>"
                     ])
                 ]
             ]);

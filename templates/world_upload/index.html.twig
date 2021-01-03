@@ -3,23 +3,58 @@
 {% block title %}Stardew Valley - Nahrát Save{% endblock %}
 
 {% block body %}
-<div>
-        {% if error %}
-                <div>
-                        {{ error }}
+<div class="h-full flex items-center justify-center">
+    <div class="bg-white max-w-md mx-auto p-8 shadow w-full">
+    {% if error %}
+        <div class="bg-red-500 border-2 border-red-800 p-4 text-center text-white text-sm font-bold rounded mb-4">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    {% if not form.vars.valid %}
+        {% for child in form.children %}
+            {%for error in child.vars.errors%}
+                <div class="bg-red-500 border-2 border-red-800 p-4 text-center text-white text-sm font-bold rounded mb-4">
+                    {{ error.message }}
                 </div>
-        {% endif %}
+            {%endfor%}
+        {%endfor%}
+    {% endif %}
 
+    <h1 class="text-center text-2xl mb-4 font-bold">Nahrát svět</h1>
     {{ form_start(form) }}
-
-        {{ form_row(form.saveGameInfo) }}
-        {{ form_errors(form.saveGameInfo) }}
-
-        {{ form_row(form.worldState) }}
-        {{ form_errors(form.worldState) }}
-
-        <button type="submit">Nahrat</button>
+        <label class="block mb-4">
+            <span class="block font-bold">Save Game Info</span>
+            <span class="text-gray-500">Soubor "SaveGameInfo"</span>
+            {{ form_widget(form.saveGameInfo, { "attr": { "class": "w-full" } }) }}
+        </label>
+        <label>
+            <span class="block font-bold">World State</span>
+            <span class="text-gray-500">Soubor "jménohráče_id"</span>
+            {{ form_widget(form.worldState, { "attr": { "class": "w-full" } }) }}
+        </label>
+        <button class="bg-blue-500 text-white w-full my-4 p-4 rounded font-bold hover:bg-blue-600 transition-colors ease-in-out duration-150" type="submit">Nahrát</button>
     {{ form_end(form) }}
+    </div>
 </div>
-{# TODO: JavaScript validation #}
+<script>
+    function validate(e) {
+        const saveGameInfo = document.forms.world_upload.world_upload_saveGameInfo.value;
+        const worldState = document.forms.world_upload.world_upload_worldState.value;
+
+        if (!saveGameInfo) {
+            alert("Nahrajte soubor SaveGameInfo");
+        }
+        else if (!worldState) {
+            alert("Nahrajte soubor <jmenohrace>_<id>");
+        } else {
+            return true;
+        }
+
+        e.preventDefault();
+        return false;
+    }
+
+    document.forms.world_upload.onsubmit = validate;
+</script>
 {% endblock %}
