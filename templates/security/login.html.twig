@@ -1,42 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Stardew Valley - Přihlásit se{% endblock %}
 
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
-
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputUsername">Username</label>
-    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
+<div class="h-full flex items-center justify-center">
+    <div class="bg-white max-w-md mx-auto p-8 shadow">
+        {% if error %}
+            <div class="bg-red-500 border-2 border-red-800 p-4 text-center text-white text-sm font-bold rounded mb-4">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
+        <h1 class="text-center text-2xl mb-4 font-bold">Prosím přihlašte se</h1>
+        <form class="" name="loginForm" method="post">
             <label>
-                <input type="checkbox" name="_remember_me"> Remember me
+                <span class="block font-bold mb-1">Uživatelské jméno</span>
+                <input class="border border-gray-500 rounded p-2 w-full mb-2" type="text"  name="username" value="{{ last_username }}" required autofocus />
             </label>
-        </div>
-    #}
+            <label>
+                <span class="block font-bold mb-1">Heslo</span>
+                <input class="border border-gray-500 rounded p-2 w-full" type="password" name="password" required />
+            </label>
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
+            <button class="bg-blue-500 text-white w-full my-4 p-4 rounded font-bold hover:bg-blue-600 transition-colors ease-in-out duration-150" type="submit">Přihlásit se</button>
+        </form>
+        <span class="block text-center mt-4">Nemáte účet? <a class="text-blue-500 hover:underline" href="/register">Registrujte se</a></span>
+    </div>
+</div>
+<script>
+    function validate(e) {
+        const usernameValue = document.forms.loginForm.username.value;
+        const passwordValue = document.forms.loginForm.password.value;
+
+        if (!usernameValue) {
+            alert("Uživatelské jméno je povinné");
+        }
+        else if (!passwordValue) {
+            alert("Heslo je povinné");
+        }
+        else {
+            return true;
+        }
+
+        e.preventDefault();
+        return false;
+    }
+
+    document.forms.loginForm.onsubmit = validate;
+</script>
 {% endblock %}
