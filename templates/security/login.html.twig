@@ -4,14 +4,14 @@
 
 {% block body %}
 <div class="h-full flex items-center justify-center">
-    <div class="bg-white max-w-md mx-auto p-8 shadow">
+    <div class="bg-white max-w-md mx-auto p-8 shadow w-full">
         {% if error %}
             <div class="bg-red-500 border-2 border-red-800 p-4 text-center text-white text-sm font-bold rounded mb-4">
                 {{ error.messageKey|trans(error.messageData, 'security') }}
             </div>
         {% endif %}
         <h1 class="text-center text-2xl mb-4 font-bold">Prosím přihlašte se</h1>
-        <form class="" name="loginForm" method="post">
+        <form name="loginForm" method="post">
             <label>
                 <span class="block font-bold mb-1">Uživatelské jméno</span>
                 <input class="border border-gray-500 rounded p-2 w-full mb-2" type="text"  name="username" value="{{ last_username }}" required autofocus />

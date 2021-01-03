@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stardew Valley - Registrace{% endblock %}
+
+{% block body %}
+<div class="h-full flex items-center justify-center">
+    <div class="bg-white max-w-md mx-auto p-8 shadow w-full">
+        {% if not form.vars.valid %}
+            {% for child in form.children %}
+                {%for error in child.vars.errors%}
+                    <div class="bg-red-500 border-2 border-red-800 p-4 text-center text-white text-sm font-bold rounded mb-4">
+                        {{ error.message }}
+                    </div>
+                {%endfor%}
+            {%endfor%}
+        {% endif %}
+
+        <h1 class="text-center text-2xl mb-4 font-bold">Registrace</h1>
+
+        {{ form_start(form) }}
+        <label class="block font-bold mb-1">
+            <span class="block font-bold mb-1">Uživatelské jméno</span>
+            {{ form_widget(form.username,
+                {
+                    "attr": {
+                        "class": "border border-gray-500 rounded p-2 w-full",
+                        "required": "true",
+                    }
+                })
+            }}
+        </label>
+
+        <label class="block font-bold mb-1">
+            <span class="block font-bold mb-1">Heslo</span>
+            {{ form_widget(form.plainPassword,
+                {
+                    "attr": {
+                        "class": "border border-gray-500 rounded p-2 w-full",
+                        "required": "true",
+                        "pattern": ".{6,}",
+                        "title": "Heslo musí mít minimálně 6 znaků"
+                    }
+                })
+            }}
+        </label>
+
+        <button class="bg-blue-500 text-white w-full my-4 p-4 rounded font-bold hover:bg-blue-600 transition-colors ease-in-out duration-150" type="submit">Pokračovat</button>
+        {{ form_end(form) }}
+
+        <span class="block text-center mt-4">Již máte účet? <a class="text-blue-500 hover:underline" href="/login">Přihlašte se</a></span>
+    </div>
+</div>
+<script>
+    function validate(e) {
+        const usernameValue = document.forms.registration_form.registration_form_username.value;
+        const passwordValue = document.forms.registration_form.registration_form_plainPassword.value;
+
+        if (!usernameValue) {
+            alert("Uživatelské jméno je povinné");
+        }
+        else if (!passwordValue) {
+            alert("Heslo je povinné");
+        }
+        else if (passwordValue.length < 6) {
+            alert("Heslo musí mít minimálně 6 znaků");
+        } else {
+            return true;
+        }
+
+        e.preventDefault();
+        return false;
+    }
+
+    document.forms.registration_form.onsubmit = validate;
+</script>
+{% endblock %}
