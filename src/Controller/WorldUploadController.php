@@ -14,6 +14,32 @@ use Symfony\Component\Routing\Annotation\Route;
 class WorldUploadController extends AbstractController
 {
     /**
+     * @Route("/world/delete", name="world_delete")
+     */
+    public function delete(Request $request): Response {
+        $token = $request->request->get("token");
+        $worldUploadId = $request->request->get("worldUploadId");
+
+        $csrfTokenId = "delete-world-".$worldUploadId;
+
+        if (!$this->isGranted("ROLE_ADMIN") || !$this->isCsrfTokenValid($csrfTokenId, $token)) {
+            return $this->redirectToRoute("root");
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $save = $em->getRepository(WorldUpload::class)->find($worldUploadId);
+
+        if (!$save) {
+            return $this->redirectToRoute("root");
+        }
+
+        $em->remove($save);
+        $em->flush();
+
+        return $this->redirectToRoute("root");
+    }
+
+    /**
      * @Route("/world/upload", name="world_upload")
      */
     public function index(Request $request): Response
