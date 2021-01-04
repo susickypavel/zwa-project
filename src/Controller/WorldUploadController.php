@@ -22,14 +22,16 @@ class WorldUploadController extends AbstractController
 
         $csrfTokenId = "delete-world-".$worldUploadId;
 
-        if (!$this->isGranted("ROLE_ADMIN") || !$this->isCsrfTokenValid($csrfTokenId, $token)) {
-            return $this->redirectToRoute("root");
-        }
-
         $em = $this->getDoctrine()->getManager();
         $save = $em->getRepository(WorldUpload::class)->find($worldUploadId);
 
         if (!$save) {
+            return $this->redirectToRoute("root");
+        }
+
+        $canDelete = $this->isGranted("ROLE_ADMIN") || $save->getAuthor()->getId() == $this->getUser()->getId();
+
+        if (!$canDelete || !$this->isCsrfTokenValid($csrfTokenId, $token)) {
             return $this->redirectToRoute("root");
         }
 
