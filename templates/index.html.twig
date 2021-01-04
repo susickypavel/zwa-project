@@ -7,7 +7,7 @@
     <main class="max-w-5xl mx-auto">
         <h1 class="font-bold text-2xl my-4">Nejnovější světy</h1>
         {% for upload in worldUploads %}
-            <article class="bg-white mb-4 p-4 border-b-4 border-blue-500">
+            <article class="bg-white mb-4 p-4 border-b-4 border-blue-500 shadow">
                 <h2 class="font-bold">{{ upload.worldData.player_name }}</h2>
                 <time>{{ upload.createdAt|date("m.d.Y H:i:s", "Europe/Prague") }}</time>
                 <p>Nahráno uživatelem: <span class="text-red-500 font-bold">{{ upload.author.username }}</span></p>
@@ -29,5 +29,9 @@
                 </div>
             </article>
         {% endfor %}
+        {{ knp_pagination_render(worldUploads, "fragments/_pagination.html.twig") }}
     </main>
+    <footer class="max-w-5xl h-48 mx-auto bg-gray-800 p-4 text-white">
+        TODO: Footer
+    </footer>
 {% endblock %}
