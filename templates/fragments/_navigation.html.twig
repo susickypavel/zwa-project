@@ -11,7 +11,13 @@
             <a href="/register">Registrovat se</a>
         </li>
         {% else %}
-        <li class="w-48 ml-auto">
+        <li class="w-48 ml-auto text-gray-300">
+            <span>Přihlášen jako <span class="text-red-500">{{ app.user.username }}</span></span>
+        </li>
+            <li class="w-48">
+                <a class="w-full" href="/world/upload">Nahrát svět</a>
+            </li>
+        <li class="w-48">
             <a class="w-full" href="/logout">Odhlásit se</a>
         </li>
         {% endif %}
