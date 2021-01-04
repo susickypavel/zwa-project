@@ -26,7 +26,7 @@
                         </svg>
                         WorldState
                     </a>
-                    {% if is_granted('ROLE_ADMIN') %}
+                    {% if is_granted('ROLE_ADMIN') or upload.author.id == app.user.id %}
                         <form method="post" class="ml-auto" action="/world/delete">
                             <input id="token" name="token" type="hidden" value="{{ csrf_token("delete-world-"~upload.id) }}" />
                             <input id="worldUploadId" name="worldUploadId" type="hidden" value="{{ upload.id }}" />
