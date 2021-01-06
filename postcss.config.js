@@ -12,7 +12,8 @@ if (Encore.isProduction()) {
     plugins.push(purgecss({
         content: [
             "./templates/**/*.html.twig"
-        ]
+        ],
+        defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
     }));
 }
 

@@ -4,8 +4,8 @@
 
 {% block body %}
     {% include 'fragments/_navigation.html.twig' %}
-    <main class="max-w-5xl mx-auto">
-        <h1 class="font-bold text-2xl my-4">Nejnovější světy</h1>
+    <main class="max-w-5xl print:max-w-full mx-auto">
+        <h1 class="font-bold text-2xl my-4 print:text-5xl print:text-center">Nejnovější světy</h1>
         {% for upload in worldUploads %}
             <article class="bg-white mb-4 p-4 border-b-4 border-blue-500 shadow">
                 <h2 class="font-bold">{{ upload.worldData.player_name }}</h2>
@@ -45,7 +45,7 @@
         {% endfor %}
         {{ knp_pagination_render(worldUploads, "fragments/_pagination.html.twig") }}
     </main>
-    <footer class="flex items-center max-w-5xl h-48 mx-auto bg-gray-800 p-4 text-white">
+    <footer class="flex items-center max-w-5xl h-48 mx-auto bg-gray-800 p-4 text-white print:max-w-full">
         <a class="h-full p-8" href="https://github.com/Thesoreon/zwa-project">
             <svg class="h-full" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <title>Zdrojové kódy na GitHubu</title>
