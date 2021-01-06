@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html class="mode-dark" lang="cs">
     <head>
         <meta charset="UTF-8" />
         <link rel="preload" href="/fonts/OpenSans-Regular.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
@@ -12,7 +12,7 @@
         <link href="{{ asset('styles/fonts.css') }}" rel="stylesheet"/>
         {{ encore_entry_link_tags('tailwind') }}
     </head>
-    <body class="bg-gray-200 print:p-8">
+    <body class="bg-gray-200 print:p-8 dark:bg-gray-500">
         {% block body %}{% endblock %}
     </body>
 </html>
