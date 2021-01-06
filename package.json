@@ -12,6 +12,7 @@
         "postcss-loader": "3.0.0",
         "regenerator-runtime": "^0.13.2",
         "stimulus": "^2.0.0",
+        "tailwindcss-dark-mode": "^1.1.7",
         "webpack-notifier": "^1.6.0"
     },
     "scripts": {
