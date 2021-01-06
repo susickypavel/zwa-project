@@ -1,0 +1,35 @@
+<article class="bg-white mb-4 p-4 border-b-4 border-blue-500 shadow">
+    <h2 class="font-bold">{{ upload.worldData.player_name }}</h2>
+    <time>{{ upload.createdAt|date("m.d.Y H:i:s", "Europe/Prague") }}</time>
+    <p>Nahráno uživatelem: <span class="text-red-500 font-bold">{{ upload.author.username }}</span></p>
+    <div class="flex mt-2">
+        <a class="flex p-4 border-2 border-black rounded" href="/uploads/{{ upload.saveGameInfo }}" download>
+            <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" height="24" width="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <title>SaveGameInfo</title>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Stáhnout SaveGameInfo
+        </a>
+        <a class="flex p-4 border-2 border-black rounded ml-1" href="/uploads/{{ upload.worldState }}" download>
+            <svg class="mr-2" xmlns="http://www.w3.org/2000/svg" height="24" width="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <title>WorldState</title>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            WorldState
+        </a>
+        {% if app.user %}
+            {% if is_granted('ROLE_ADMIN') or upload.author.id == app.user.id %}
+                <form method="post" class="ml-auto" action="/world/delete">
+                    <input id="token" name="token" type="hidden" value="{{ csrf_token("delete-world-"~upload.id) }}" />
+                    <input id="worldUploadId" name="worldUploadId" type="hidden" value="{{ upload.id }}" />
+                    <button type="submit" class="flex p-4 border-2 border-red-500 rounded">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#f00" viewBox="0 0 24 24" stroke="#9B2C2C">
+                            <title>Smazat svět</title>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                    </button>
+                </form>
+            {% endif %}
+        {% endif %}
+    </div>
+</article>
