@@ -10,7 +10,7 @@
         <meta name="author" content="Pavel Susicky" />
         <meta name="description" content="Sdílejte své herní světy ze Stardew Valley" />
         <link href="{{ asset('styles/fonts.css') }}" rel="stylesheet"/>
-        <link href="{{ asset('styles/tailwind.css') }}" rel="stylesheet" />
+        {{ encore_entry_link_tags('tailwind') }}
     </head>
     <body class="bg-gray-200">
         {% block body %}{% endblock %}
