@@ -17,11 +17,11 @@
             <span class="block">Skin</span>
             <select class="w-32 text-black" name="theme">
                 {% if app.request.session.get("theme")|default("default") == "dark" %}
-                    <option value="default">Light</option>
-                    <option value="dark" selected>Dark</option>
+                    <option value="default">Světlý</option>
+                    <option value="dark" selected>Tmavý</option>
                 {% else %}
-                    <option value="default" selected>Light</option>
-                    <option value="dark">Dark</option>
+                    <option value="default" selected>Světlý</option>
+                    <option value="dark">Tmavý</option>
                 {% endif %}
             </select>
         </label>
