@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="h-full flex items-center justify-center">
-    <div class="bg-white max-w-md mx-auto p-8 shadow w-full">
+    <div class="bg-white max-w-md mx-auto p-8 shadow w-full rounded dark:bg-blue-900 dark:text-white">
         {% if error %}
             <div class="bg-red-500 border-2 border-red-800 p-4 text-center text-white text-sm font-bold rounded mb-4">
                 {{ error.messageKey|trans(error.messageData, 'security') }}
