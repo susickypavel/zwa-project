@@ -1,6 +1,6 @@
 <article class="bg-white mb-4 p-4 border-b-4 border-blue-500 shadow dark:bg-blue-900 dark:text-white">
     <h2 class="font-bold">{{ upload.worldData.player_name }}</h2>
-    <time>{{ upload.createdAt|date("m.d.Y H:i:s", "Europe/Prague") }}</time>
+    <time>{{ upload.createdAt|date("d.m.Y H:i:s", "Europe/Prague") }}</time>
     <p>Nahráno uživatelem: <span class="text-red-500 font-bold">{{ upload.author.username }}</span></p>
     <div class="flex mt-2">
         <a class="flex p-4 border-2 border-black rounded dark:border-white" href="/uploads/{{ upload.saveGameInfo }}" download>
