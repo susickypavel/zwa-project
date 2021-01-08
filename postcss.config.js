@@ -13,7 +13,9 @@ if (Encore.isProduction()) {
         content: [
             "./templates/**/*.html.twig"
         ],
-        whitelist: ["mode-dark"],
+        safelist: ["dark", "dark-mode", "mode-dark"],
+        whitelist: ["mode-dark", "dark", "dark-mode"],
+        whitelistPatterns: [ /dark/],
         defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
     }));
 }
