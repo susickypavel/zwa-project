@@ -1,14 +1,14 @@
 # ZWA Semestrální práce
 Vypracoval Pavel Sušický.
 
-## Tech stack
+## 1. Tech stack
 - PHP 7
 - Symfony 5
 - PostgreSQL 13
 
-## Lokální instalace
+## 2. Lokální instalace
 
-### Předpoklady
+### 2.1 Předpoklady
 
 - Composer (php package manager)
 - Yarn (node package manager)
@@ -16,17 +16,29 @@ Vypracoval Pavel Sušický.
 - Node.js
 - Symfony development kit
 
-### Instalace
+### 2.1 Instalace
 
 - Nainstalování PHP dependecies pomocí composeru
 - Nainstalování Node dependencies pomocí yarnu
-- Nastavení environment variables (.env) pro PostgreSQL
+- Nastavení environment variables (.env) pro PostgreSQL/MySQL dabázi
 
-## Postup projektu
+## 3. Diagramy
 
-- Inicializace pomocí symfony
-- Přidání Tailwindcss pomocí unpkg (změnit na build time procedure)
-- Přidání a optimalizace fontu Open Sans (woff2, woff) + font prefetching
-- Vytvoření autentizace (Guard Authenticator)
-- Vytvoření login a registration formulářů
-- Přidání základních meta tagů
+![](./docs/database.svg)
+![](./docs/architektura.svg)
+
+## 4. Popis Zabezpečení
+
+- Uživatelská hesla jsou zahashovaná a osolená
+- Všechny formuláře používají unikátní tokeny, pro zamezení CSRF útoku.
+- Všechny uživatelské vstupy zobrazeny na výstupu jsou převedeny do HTML entities (řešeno automaticky ze strany Twig šablon) zabraňující XSS útokům.
+
+## 5. Zpracování uploadování
+
+- Pro parsování XML souborů hry používám DomCrawler knihovnu z composeru
+- K DomCrawleru ještě používám knihovnu css-selector pro použití css-like selektorů místo XPath
+
+## 6. Popis použití Symfony frameworku
+- Projekt je založen na kostře typické Symfony aplikace používající MVC architekturu.
+
+viz diagram architektury v **4. Diagramy**
