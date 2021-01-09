@@ -1,5 +1,21 @@
 # ZWA Semestrální práce
-Vypracoval Pavel Sušický.
+
+## 0. Zadání
+
+Zakázkou je vytvoření webu (dále jen "web"), který zobrazí list nahraných herních světů ze Stardew Valley. Nahrané soubory herního světa
+se zpracují a přečtou se z nich různé parametry (pro začátek bude stačit jméno hráče, počet peněz), zároveň tento nahraný svět je možný
+stáhnout ostatními uživateli, aby si ho mohli zahrát.
+
+Pro nahrání herního světa na web bude potřeba registrace a přihlašování uživatelů, když bude uživatel označen jako "admin", měl by mít možnost mazat kterýkoliv 
+nahraný svět. Pro normální uživatele bude možnost jenom mazat svůj vlastní herní svět.
+
+Pro pohodlí uživatelů bude možnost měnit vzhled stránky (minimálně barvy na světlý/tmavý režim).
+
+Souhrn akceptačních podmínek:
+- Registrace a přihlašování uživatelů
+- Nahrávání a mazání nahrávek
+- Světlý a tmavý režim
+- Navigace pro směrování na jednotlivé stránky webu
 
 ## 1. Tech stack
 - PHP 7
@@ -42,3 +58,16 @@ Vypracoval Pavel Sušický.
 - Projekt je založen na kostře typické Symfony aplikace používající MVC architekturu.
 
 viz diagram architektury v **4. Diagramy**
+
+## 7. Manuál
+
+Pro nahrávání herních světů se je třeba přihlásit na `/login` stránce, nebo se registrovat na `/register`. Poté lze svět nahrávat na
+`/world/upload`. Všechny zmíněné odkazy jsou dostupné přes navigaci webu.
+
+Mazání herních světů je možné z listu na úvodní stránce, když máte pravomoc mazat nahrání objeví se u něho červené tlačítko koše. Admin má možnost mazat všechny nahrání.
+
+## 8. Okomentované UI
+
+![](./docs/root.jpg);
+![](./docs/přihlášen.jpg);
+![](./docs/nahrání.jpg);
