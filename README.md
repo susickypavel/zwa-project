@@ -71,3 +71,9 @@ Mazání herních světů je možné z listu na úvodní stránce, když máte p
 ![](./docs/root.jpg);
 ![](./docs/přihlášen.jpg);
 ![](./docs/nahrání.jpg);
+
+## 9. CSS
+
+CSS v tomto projektu je vytvořeno pomocí knihovny TailwindCSS. Tailwind je soubor tzv. "utility" tříd, pomocí kterých lze komponovat jednotlivé prvky stránky až po layout.
+
+Protože jsem použil Tailwind pro tento projekt, tak jsem nenapsal ani jednu čárku CSS, pouze používal tailwind třídy v rámci .twig templatů. Např. "flex items-center justify-center", což nastaví display: flex, align-items: center, justify-content: center vlastnosti danému elementu.
